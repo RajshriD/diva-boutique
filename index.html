@@ -42,7 +42,7 @@ input:focus,select:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3p
 </head><body><div class="w">
 <header><h1>✂ Diva Designer Boutique</h1><div class="row"><div id="who"></div><button id="th" class="chip" onclick="toggleTheme()">🌙 Dark</button></div></header>
 <div id="app"></div>
-<h3 style="margin-top:20px">🔔 Notifications</h3><div id="notes"></div>
+<div id="nbox" style="display:none"><h3 style="margin-top:20px">🔔 Notifications</h3><div id="notes"></div></div>
 </div>
 <script>
 const SB="https://kvrgqiasbnhpdwndvmez.supabase.co",KEY="sb_publishable_Bj-PCgS2c6dUaK8QIHKhhQ_7qj-OJp0";
@@ -162,7 +162,7 @@ function viewStaff(){return `<h2>Staff desk</h2>`+(orders.length?orders.map(o=>{
 function viewHead(){const c=s=>orders.filter(o=>o.status==s).length;
  return `<h2>Owner overview</h2><div class="grid">${FLOW.map(s=>`<div class="card"><div class="mu">${s}</div><h1>${c(s)}</h1></div>`).join("")}</div>`+
  orders.map(o=>orderCard(o,o.status!="Delivered"?`<div class="row"><select onchange="reas(${o.id},this.value)">${staffL.map(x=>`<option value="${x.id}" ${x.id==o.staff_id?"selected":""}>${esc(x.name||"Tailor")}</option>`).join("")}</select><input type="date" value="${o.eta||""}" onchange="eta(${o.id},this.value)"><span class="mu">Reassign / change delivery date</span></div>`:"")).join("")}
-function render(){const a=$("app");
+function render(){const a=$("app");const nb=$("nbox");if(nb)nb.style.display=(me&&!recov&&!needName)?"block":"none";
  if(recov){a.innerHTML=resetView();$("who").innerHTML="";$("notes").innerHTML="";return}
  if(!me){a.innerHTML=authView();$("who").innerHTML="";$("notes").innerHTML="";return}
  $("who").innerHTML=`<span class="mu">${esc(prof.name||me.phone||me.email)} · ${esc(prof.role)}</span> <button class="chip" onclick="logout()">Sign out</button>`;
