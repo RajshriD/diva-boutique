@@ -50,7 +50,7 @@ const sb=supabase.createClient(SB,KEY);
 const STYLES={Blouse:[],Kurta:["Straight Kurta","Sashed Kurta","Butta Kurta"],Lehenga:["Classic Lehenga","Zari Waist","Motif Lehenga"],"Crop-Top":["Boxy Crop","Tie-Front Crop","Puff Crop"],Saree:[],Alteration:[],Others:[]};
 const SERVICE={Saree:["Pico","Fall","Danglers"],Alteration:["Length","Fitting (loose/tight)","Sleeves","Neckline","Other"],Others:["Custom design","Embroidery","Other"]};
 const SIL={kurta:"ethnic",lehenga:"traditional","crop-top":"modern",saree:"bridal",modern:"modern",bridal:"bridal",traditional:"traditional",ethnic:"ethnic"};
-const ACC=["#8c2f4b","#c9a24b","#2f6f6a"],FLOW=["Booked","In stitching","Stitched","Delivered"],DP=["#c9a24b","#8c2f4b","#3b2a2a"];
+const ACC=["#8c2f4b","#c9a24b","#2f6f6a"],FLOW=["Tailors","Booked","In stitching","Stitched","Delivered"],DP=["#c9a24b","#8c2f4b","#3b2a2a"];
 let me=null,prof=null,orders=[],staffL=[],heads=[],notes=[],fabric="",pal=[...DP],style="",designs=[],pick=-1,busy=false,msg="",am="in",fv={},idn="",left=0,tmr=null,needName=false,vb=false,recov=/type=recovery/.test(location.hash);
 const $=i=>document.getElementById(i),today=()=>new Date().toISOString().slice(0,10),addDays=n=>{const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)};
 const esc=t=>String(t==null?"":t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -143,7 +143,7 @@ function viewCustomer(){
  return `<div class="card"><h2>Create your design</h2>
  <h3>1. Select the outfit</h3>
  <div class="row">${Object.keys(STYLES).map(k=>`<button class="chip ${k==style?"on":""}" onclick="setStyle('${k}')">${k}</button>`).join("")}</div>
- ${style?"":`<p class="mu">Choose what you'd like made or altered to continue.</p>`}
+ ${style?"":`<p class="mu">Choose what you'd like to create or altered to continue.</p>`}
  ${need?`<h3 style="margin-top:14px">2. Upload your fabric</h3>
  <input type="file" accept="image/*" onchange="upl(this)">
  ${fabric?`<p><img class="thumb" src="${fabric}"> <button class="chip" onclick="rmFab()">✕ Remove</button> <span class="mu">Fabric uploaded · trims matched to it:</span> ${pal.map(c=>`<i style="display:inline-block;width:16px;height:16px;border-radius:50%;background:${c};vertical-align:middle"></i>`).join(" ")}</p>`:`<p class="mu">📷 Upload a clear, flat <b>6×6 inch (15×15 cm)</b> photo of your fabric — no folds, good daylight, shot straight-on. Your swatch is repeated across the garment.</p>`}
