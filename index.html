@@ -58,7 +58,7 @@ let svc=[],snote="";
 const isSvc=()=>!!SERVICE[style];
 function togSvc(o){svc=svc.includes(o)?svc.filter(x=>x!==o):[...svc,o];render()}
 function setNote(v){snote=v}
-const bookBox=()=>staffL.length?`<hr id="bookbox"><h3>Book your fitting</h3><div class="row"><select id="st">${staffL.map(x=>`<option value="${x.id}">${esc(x.name||"Tailor")}</option>`).join("")}</select><input type="date" id="dt" min="${today()}" value="${addDays(2)}"><button class="btn" onclick="book()">Book appointment</button></div>`:`<p class="mu" id="bookbox">No tailors available yet — please check back soon.</p>`;
+const bookBox=()=>staffL.length?`<hr id="bookbox"><h3>Book your service</h3><div class="row"><select id="st">${staffL.map(x=>`<option value="${x.id}">${esc(x.name||"Tailor")}</option>`).join("")}</select><input type="date" id="dt" min="${today()}" value="${addDays(2)}"><button class="btn" onclick="book()">Book appointment</button></div>`:`<p class="mu" id="bookbox">No tailors available yet — please check back soon.</p>`;
 const nm=id=>{const s=staffL.find(x=>x.id==id);return s?(s.name||"Tailor"):"Unassigned"};
 const TR=[
 {n:"Boat-neck Elbow",a:"boat",s:"elbow",b:"u",m:"piping",r:0},
